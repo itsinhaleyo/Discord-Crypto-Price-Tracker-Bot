@@ -1,0 +1,4 @@
+aiohttp
+disnake
+discord.py
+pycoingecko
