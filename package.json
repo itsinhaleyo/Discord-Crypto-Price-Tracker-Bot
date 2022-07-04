@@ -1,0 +1,23 @@
+{
+  "name": "1flr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "flrpricetracker.py",
+  "scripts": {
+    "start" : "node flrpricetracker.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsinhaleyo/1flrprice.git"
+  },
+  "keywords": [],
+  "author": "ItsInahleYo",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/itsinhaleyo/1flrprice/issues"
+  },
+  "homepage": "https://github.com/itsinhaleyo/1flrprice#readme",
+  "dependencies": {
+    "discord.py": "^1.0.0"
+  }
+}
