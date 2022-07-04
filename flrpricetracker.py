@@ -13,8 +13,6 @@ from disnake.ext.commands import Context
 from pycoingecko import CoinGeckoAPI
 cg = CoinGeckoAPI()
 
-import exceptions
-
 if not os.path.isfile("config.json"):
     sys.exit("'config.json' not found! Please add it and try again.")
 else:
