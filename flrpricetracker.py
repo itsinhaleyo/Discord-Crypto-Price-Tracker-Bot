@@ -50,4 +50,4 @@ async def status_task() -> None:
         status2 = ["$"+str(price2)+"."+str(price[:7])+"📈"+str(price3)+"."+str(price4[:2])+"%"]
         await bot.change_presence(activity=disnake.Game(random.choice(status2)))
 
-bot.run(config["token"])
+bot.run(os.environ["DISCORD_TOKEN"])
