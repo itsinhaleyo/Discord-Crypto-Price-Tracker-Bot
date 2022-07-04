@@ -1,1 +1,1 @@
-worker: py -3 flrpricetracker.py
+worker: python3 flrpricetracker.py
