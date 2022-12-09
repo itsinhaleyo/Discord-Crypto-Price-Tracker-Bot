@@ -4,7 +4,7 @@ import platform
 import random
 import sys
 import re
-
+import requests
 import disnake
 from disnake import ApplicationCommandInteraction
 from disnake.ext import tasks, commands
@@ -34,18 +34,12 @@ async def on_ready() -> None:
 
 @tasks.loop(minutes=0.1)
 async def status_task() -> None:
-    flrprice = cg.get_price(ids='flare-token', vs_currencies='usd', include_24hr_change='true')
-    price = re.findall("\d+", str(flrprice))[1]
-    price2 = re.findall("\d+", str(flrprice))[0]
-    price3 = re.findall("\d+", str(flrprice))[3]
-    price4 = re.findall("\d+", str(flrprice))[4]
-    run = str(re.sub(r'[^-]', "", str(flrprice)))
-    flr = len(run)
-    if flr == 2:
-        status1 = ["$"+str(price2)+"."+str(price[:7])+"📉"+str(price3)+"."+str(price4[:2])+"%"]
-        await bot.change_presence(activity=disnake.Game(random.choice(status1)))
-    elif flr == 1:
-        status2 = ["$"+str(price2)+"."+str(price[:7])+"📈"+str(price3)+"."+str(price4[:2])+"%"]
+    data = requests.get("https://flarecasino.ca/fcprice.json").json()
+    if data["price"]["percent_change_12h"] >= 0:
+        status2 = ["$"+data["price"]["price"]+"📈"+data["price"]["percent_change_12h"]+"%"]
+        await bot.change_presence(activity=disnake.Game(random.choice(status2)))
+    else:
+        status2 = ["$"+data["price"]["price"]+"📉"+data["price"]["percent_change_12h"]+"%"]
         await bot.change_presence(activity=disnake.Game(random.choice(status2)))
 
 bot.run(os.environ["DISCORD_TOKEN"])
